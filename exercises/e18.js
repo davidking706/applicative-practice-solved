@@ -7,6 +7,18 @@
 export function getGreatestDiscoveryYear(data) {
   // Your code goes here...
   // feel free to import your `maxBy` or `minBy` methods from previous lessons
+  const sumYearObject = data.asteroids.map(asteroid => asteroid.discoveryYear)
+  .reduce((acc, cv) => {
+    acc[cv] === undefined ? acc[cv] = 1 : acc[cv]++;
+    
+    return acc
+  }, {})
+  
+  const greatestYear = Object.entries(sumYearObject).reduce((maxSum, currentSum) => {
+    return currentSum[1] > maxSum[1] ? currentSum : maxSum;
+  });
+  
+  return Number(greatestYear[0])
 }
 
 // === TEST YOURSELF ===
